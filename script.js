@@ -5,7 +5,7 @@ let turn;
 let good;
 let compTurn;
 let intervalId;
-let noise = true;
+// let strict = false;
 let on = false;
 let win;
 
@@ -19,9 +19,21 @@ const green = document.querySelector('#green');
 const onButton = document.querySelector('#on');
 const startButton = document.querySelector('#start');
 
+// strictButton.addEventListener('click', (event) => {
+// 	if (strictButton.checked == true) {
+// 		strict = true;
+// 	} else {
+// 		strict = false;
+// 	}
+// });
+
 onButton.addEventListener('click', (event) => {
 	if (onButton.checked == true) {
 		on = true;
+		turnCounter.innerHTML = '-';
+	} else {
+		on = false;
+		turnCounter.innerHTML = '';
 		clearColor();
 		clearInterval(intervalId);
 	}
@@ -40,6 +52,8 @@ function play() {
 	flash = 0;
 	intervalId = 0;
 	turn = 1;
+	turnCounter.innerHTML = 1;
+
 	good = true;
 	for (var i = 0; i < 20; i++) {
 		order.push(Math.floor(Math.random() * 4) + 1);
@@ -74,32 +88,32 @@ function gameTurn() {
 }
 
 function yellowPick() {
-	yellow.style.border = '5px solid yellow';
+	yellow.style.border = '10px solid yellow';
 	yellow.style.background = 'none';
 }
 
 function orangePick() {
-	orange.style.border = '5px solid orange';
+	orange.style.border = '10px solid orange';
 	orange.style.background = 'none';
 }
 
 function redPick() {
-	red.style.border = '5px solid red';
+	red.style.border = '10px solid red';
 	red.style.background = 'none';
 }
 
 function purplePick() {
-	purple.style.border = '5px solid purple';
+	purple.style.border = '10px solid purple';
 	purple.style.background = 'none';
 }
 
 function bluePick() {
-	blue.style.border = '5px solid blue';
+	blue.style.border = '10px solid blue';
 	blue.style.background = 'none';
 }
 
 function greenPick() {
-	green.style.border = '5px solid green';
+	green.style.border = '19px solid green';
 	green.style.background = 'none';
 }
 
@@ -113,17 +127,17 @@ function clearColor() {
 }
 
 function flashColor() {
-	yellow.style.border = '5px solid yellow';
+	yellow.style.border = '10px solid yellow';
 	yellow.style.background = 'none';
-	orange.style.border = '5px solid orange';
+	orange.style.border = '10pxsolid orange';
 	orange.style.background = 'none';
-	red.style.border = '5px solid red';
+	red.style.border = '10px solid red';
 	red.style.background = 'none';
-	purple.style.border = '5px solid purple';
+	purple.style.border = '10px solid purple';
 	purple.style.background = 'none';
-	blue.style.border = '5px solid blue';
+	blue.style.border = '10px solid blue';
 	blue.style.background = 'none';
-	green.style.border = '5px solid green';
+	green.style.border = '10px solid green';
 	green.style.background = 'none';
 }
 
@@ -131,7 +145,7 @@ yellow.addEventListener('click', (event) => {
 	if (on) {
 		playerOrder.push(1);
 		check();
-		one();
+		yellowPick();
 		if (!win) {
 			setTimeout(() => {
 				clearColor();
@@ -144,7 +158,7 @@ orange.addEventListener('click', (event) => {
 	if (on) {
 		playerOrder.push(2);
 		check();
-		two();
+		orangePick();
 		if (!win) {
 			setTimeout(() => {
 				clearColor();
@@ -157,7 +171,7 @@ red.addEventListener('click', (event) => {
 	if (on) {
 		playerOrder.push(3);
 		check();
-		three();
+		redPick();
 		if (!win) {
 			setTimeout(() => {
 				clearColor();
@@ -170,7 +184,7 @@ blue.addEventListener('click', (event) => {
 	if (on) {
 		playerOrder.push(4);
 		check();
-		four();
+		bluePick();
 		if (!win) {
 			setTimeout(() => {
 				clearColor();
@@ -180,9 +194,9 @@ blue.addEventListener('click', (event) => {
 });
 purple.addEventListener('click', (event) => {
 	if (on) {
-		playerOrder.push(4);
+		playerOrder.push(5);
 		check();
-		four();
+		purplePick();
 		if (!win) {
 			setTimeout(() => {
 				clearColor();
@@ -192,9 +206,9 @@ purple.addEventListener('click', (event) => {
 });
 green.addEventListener('click', (event) => {
 	if (on) {
-		playerOrder.push(4);
+		playerOrder.push(6);
 		check();
-		four();
+		greenPick();
 		if (!win) {
 			setTimeout(() => {
 				clearColor();
@@ -222,8 +236,6 @@ function check() {
 			good = true;
 			intervalId = setInterval(gameTurn, 800);
 		}, 800);
-
-		noise = false;
 	}
 
 	if (turn == playerOrder.length && good && !win) {
