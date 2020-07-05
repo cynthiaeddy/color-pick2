@@ -20,10 +20,6 @@ const startButton = document.querySelector('#start');
 onButton.addEventListener('click', (event) => {
 	if (onButton.checked == true) {
 		on = true;
-		turnCounter.innerHTML = '-';
-	} else {
-		on = false;
-		turnCounter.innerHTML = '';
 		clearColor();
 		clearInterval(intervalId);
 	}
@@ -42,7 +38,6 @@ function play() {
 	flash = 0;
 	intervalId = 0;
 	turn = 1;
-	turnCounter.innerHTML = 1;
 	good = true;
 	for (var i = 0; i < 20; i++) {
 		order.push(Math.floor(Math.random() * 4) + 1);
@@ -189,16 +184,11 @@ function check() {
 		setTimeout(() => {
 			turnCounter.innerHTML = turn;
 			clearColor();
-
-			if (strict) {
-				play();
-			} else {
-				compTurn = true;
-				flash = 0;
-				playerOrder = [];
-				good = true;
-				intervalId = setInterval(gameTurn, 800);
-			}
+			compTurn = true;
+			flash = 0;
+			playerOrder = [];
+			good = true;
+			intervalId = setInterval(gameTurn, 800);
 		}, 800);
 
 		noise = false;
@@ -209,7 +199,6 @@ function check() {
 		playerOrder = [];
 		compTurn = true;
 		flash = 0;
-		turnCounter.innerHTML = turn;
 		intervalId = setInterval(gameTurn, 800);
 	}
 }
