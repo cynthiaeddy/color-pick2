@@ -15,18 +15,12 @@ const red = document.querySelector('#red');
 const purple = document.querySelector('#purple');
 const blue = document.querySelector('#blue');
 const green = document.querySelector('#green');
-const strictButton = document.querySelector('#strict');
 const startButton = document.querySelector('#start');
 
 startButton.addEventListener('click', (event) => {
 	if (startButton) {
 		start = true;
 		turnCounter.innerHTML = '-';
-	} else {
-		start = false;
-		turnCounter.innerHTML = '';
-		clearColor();
-		clearInterval(intervalId);
 	}
 	if (start || win) {
 		play();
@@ -216,14 +210,6 @@ green.addEventListener('click', (event) => {
 });
 
 function check() {
-	console.log(
-		'playerOrder[playerOrder.length - 1]',
-		playerOrder[playerOrder.length - 1],
-		'order[playerOrder.length - 1]',
-		order[playerOrder.length - 1],
-		'order[order.length - 1]',
-		order[order.length - 1]
-	);
 	if (playerOrder[playerOrder.length - 1] !== order[playerOrder.length - 1]) good = false;
 
 	if (playerOrder.length == 3 && good) {
