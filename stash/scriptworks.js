@@ -5,7 +5,8 @@ let turn;
 let good;
 let compTurn;
 let intervalId;
-let start = false;
+let strict = false;
+let on = false;
 let win;
 
 const turnCounter = document.querySelector('#turn');
@@ -16,19 +17,31 @@ const purple = document.querySelector('#purple');
 const blue = document.querySelector('#blue');
 const green = document.querySelector('#green');
 const strictButton = document.querySelector('#strict');
+const onButton = document.querySelector('#on');
 const startButton = document.querySelector('#start');
 
-startButton.addEventListener('click', (event) => {
-	if (startButton) {
-		start = true;
+strictButton.addEventListener('click', (event) => {
+	if (strictButton.checked == true) {
+		strict = true;
+	} else {
+		strict = false;
+	}
+});
+
+onButton.addEventListener('click', (event) => {
+	if (onButton.checked == true) {
+		on = true;
 		turnCounter.innerHTML = '-';
 	} else {
-		start = false;
+		on = false;
 		turnCounter.innerHTML = '';
 		clearColor();
 		clearInterval(intervalId);
 	}
-	if (start || win) {
+});
+
+startButton.addEventListener('click', (event) => {
+	if (on || win) {
 		play();
 	}
 });
@@ -51,13 +64,13 @@ function play() {
 }
 
 function gameTurn() {
-	start = false;
+	on = false;
 
 	if (flash == turn) {
 		clearInterval(intervalId);
 		compTurn = false;
 		clearColor();
-		start = true;
+		on = true;
 	}
 
 	if (compTurn) {
@@ -130,7 +143,7 @@ function flashColor() {
 
 yellow.addEventListener('click', (event) => {
 	console.log('yellow');
-	if (start) {
+	if (on) {
 		playerOrder.push(1);
 		check();
 		yellowPick();
@@ -144,7 +157,7 @@ yellow.addEventListener('click', (event) => {
 
 orange.addEventListener('click', (event) => {
 	console.log('orange');
-	if (start) {
+	if (on) {
 		playerOrder.push(2);
 		check();
 		orangePick();
@@ -159,7 +172,7 @@ orange.addEventListener('click', (event) => {
 red.addEventListener('click', (event) => {
 	console.log('red');
 
-	if (start) {
+	if (on) {
 		playerOrder.push(3);
 		check();
 		redPick();
@@ -174,7 +187,7 @@ red.addEventListener('click', (event) => {
 purple.addEventListener('click', (event) => {
 	console.log('purple');
 
-	if (start) {
+	if (on) {
 		playerOrder.push(4);
 		check();
 		purplePick();
@@ -189,7 +202,7 @@ purple.addEventListener('click', (event) => {
 blue.addEventListener('click', (event) => {
 	console.log('blue');
 
-	if (start) {
+	if (on) {
 		playerOrder.push(5);
 		check();
 		bluePick();
@@ -203,7 +216,7 @@ blue.addEventListener('click', (event) => {
 green.addEventListener('click', (event) => {
 	console.log('green');
 
-	if (start) {
+	if (on) {
 		playerOrder.push(6);
 		check();
 		greenPick();
@@ -237,11 +250,15 @@ function check() {
 			turnCounter.innerHTML = turn;
 			clearColor();
 
-			compTurn = true;
-			flash = 0;
-			playerOrder = [];
-			good = true;
-			intervalId = setInterval(gameTurn, 800);
+			if (strict) {
+				play();
+			} else {
+				compTurn = true;
+				flash = 0;
+				playerOrder = [];
+				good = true;
+				intervalId = setInterval(gameTurn, 800);
+			}
 		}, 800);
 	}
 
@@ -258,6 +275,6 @@ function check() {
 function winGame() {
 	flashColor();
 	turnCounter.innerHTML = 'WIN!';
-	start = false;
+	on = false;
 	win = true;
 }
