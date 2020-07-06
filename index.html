@@ -10,15 +10,28 @@
   <meta charset="UTF-8">
   <title>Simon Game</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
 
 </head>
 
 <body>
-<div class='outer-container'>
-  <main class="container">
+  <div class='nav-toggle'>
+    <div class="nav-toggle-bar"></div>
+  </div>
+  <nav class="nav">
+    <h1>how to play</h1>
+    <p>
+      Press the START button. Simon will give the first signal. Repeat the signal by pressing the same color.<br/><br/>
+
+      Simon will duplicate the first signal and add one. Repeat these two signals by pressing the same color, in order.<br/><br/>
+
+      Correctly repeat a longer and longer sequence of colors.
+
+    </p>
+  </nav>
+          <div class='container'>
 
     <ul class="cards">
       <li class="card" >
@@ -40,12 +53,10 @@
         <div id="green"class="circle" ></div>
       </li>
     </ul>
-    </main>
       <div id="switches">
         <button class="button" id="start">Start</button>
         <div id="turn"></div>
       </div>
-
     </div>
   <script  src="script.js"></script>
 

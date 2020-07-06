@@ -1,3 +1,22 @@
+(function() {
+	const hamburger = {
+		navToggle: document.querySelector('.nav-toggle'),
+		nav: document.querySelector('nav'),
+
+		doToggle: function(e) {
+			e.preventDefault();
+			this.navToggle.classList.toggle('expanded');
+			this.nav.classList.toggle('expanded');
+		}
+	};
+	hamburger.navToggle.addEventListener('click', function(e) {
+		hamburger.doToggle(e);
+	});
+	hamburger.nav.addEventListener('click', function(e) {
+		hamburger.doToggle(e);
+	});
+})();
+
 let order = [];
 let playerOrder = [];
 let flash;
@@ -218,7 +237,7 @@ function check() {
 
 	if (good == false) {
 		flashColor();
-		turnCounter.innerHTML = 'NO!';
+		turnCounter.innerHTML = 'try again';
 		setTimeout(() => {
 			turnCounter.innerHTML = turn;
 			clearColor();
@@ -243,7 +262,7 @@ function check() {
 
 function winGame() {
 	flashColor();
-	turnCounter.innerHTML = 'WIN!';
+	turnCounter.innerHTML = 'you win!';
 	start = false;
 	win = true;
 }
