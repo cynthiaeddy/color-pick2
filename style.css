@@ -15,7 +15,7 @@ body {
 	padding: 32px;
 	position: fixed;
 	top: 0;
-	width: 320px;
+	width: 400px;
 	z-index: 3;
 	transition: right 0.5s ease;
 	margin-top: 5%;
@@ -28,7 +28,7 @@ h1 {
 	border-bottom: 1px red double;
 }
 p {
-	font-size: 30px;
+	font-size: 25px;
 }
 
 .nav.expanded {
@@ -174,9 +174,7 @@ button:focus {
 		width: 70vw;
 		padding-left: 0;
 	}
-	.nav {
-		width: 400px;
-	}
+
 	#switches {
 		margin-left: 0;
 	}
