@@ -25,7 +25,7 @@ h3 {
 	text-transform: none;
 	margin: 0 20px;
 	opacity: 0.0;
-	animation: fadeIn ease 5s;
+	*/: fadeIn ease 5s;
 	-webkit-animation: fadeIn ease 5s;
 }
 
@@ -138,7 +138,7 @@ p {
 	background: none;
 	border: none;
 	color: #ffffff75;
-	font-size: 3.5em;
+	font-size: 3.25em;
 	cursor: pointer;
 }
 button:hover {
@@ -165,7 +165,6 @@ button:focus {
 .cards {
 	display: flex;
 	justify-content: center;
-	/* align-items: center; */
 	flex-direction: row;
 	flex-wrap: wrap;
 }
@@ -220,8 +219,21 @@ button:focus {
 		margin-left: 0;
 	}
 }
-
+@media (max-width: 800px) {
+	.header {
+		margin-top: 0;
+	}
+}
 @media (max-width: 600px) {
+	.header {
+		margin-top: 5px;
+	}
+	h3 {
+		margin-bottom: 100px;
+		align-self: center;
+		width: 100vw;
+		font-size: 30px;
+	}
 	.container {
 		width: 100vw;
 		margin-left: -5px;
@@ -250,7 +262,7 @@ button:focus {
 		position: absolute;
 		margin-top: 0%;
 		padding-top: 80px;
-		right: -100vw;
+		right: -110vw;
 	}
 	.nav-toggle {
 		position: absolute;
