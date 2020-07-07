@@ -226,10 +226,12 @@ button:focus {
 }
 @media (max-width: 600px) {
 	.header {
-		margin-top: 5px;
+		/* margin-top: 75px; */
+		height: 20vh;
 	}
 	h3 {
-		margin-bottom: 100px;
+		margin-top: 30px;
+		/* margin-bottom: 60px; */
 		align-self: center;
 		width: 100vw;
 		font-size: 30px;
