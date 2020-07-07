@@ -25,7 +25,7 @@ h3 {
 	text-transform: none;
 	margin: 0 20px;
 	opacity: 0.0;
-	*/: fadeIn ease 5s;
+	animation: fadeIn ease 5s;
 	-webkit-animation: fadeIn ease 5s;
 }
 
@@ -233,6 +233,8 @@ button:focus {
 		align-self: center;
 		width: 100vw;
 		font-size: 30px;
+		text-align: center;
+		margin-left: 0;
 	}
 	.container {
 		width: 100vw;
