@@ -24,9 +24,9 @@ h3 {
 	color: #fff;
 	text-transform: none;
 	margin: 0 20px;
-	opacity: 0.0;
+	/* opacity: 0.0;
 	animation: fadeIn ease 5s;
-	-webkit-animation: fadeIn ease 5s;
+	-webkit-animation: fadeIn ease 5s; */
 }
 
 @keyframes fadeIn {
@@ -221,16 +221,18 @@ button:focus {
 }
 @media (max-width: 800px) {
 	.header {
-		margin-top: 0;
+		/* margin-top: 0; */
+		height: 12vh;
 	}
 }
 @media (max-width: 600px) {
 	.header {
-		/* margin-top: 75px; */
-		height: 20vh;
+		padding-top: 30px;
+		margin-top: 75px;
+		height: 18vh;
 	}
 	h3 {
-		margin-top: 30px;
+		margin-top: 60px;
 		/* margin-bottom: 60px; */
 		align-self: center;
 		width: 100vw;
