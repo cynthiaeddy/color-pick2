@@ -24,12 +24,73 @@ h3 {
 	color: #fff;
 	text-transform: none;
 	margin: 0 20px;
+}
+h3,
+.instructions {
 	opacity: 0.0;
 	animation: fadeIn ease 5s;
 	-webkit-animation: fadeIn ease 5s;
+	-moz-animation: fadeIn ease 5s;
+	-o-animation: fadeIn ease 5s;
+}
+.instructions {
+	height: 50px;
+	width: 60px;
+	color: rgba(255, 255, 0, 0.7);
+	font-size: 25px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	text-align: center;
+	border-bottom: 1px red double;
+	padding-top: 50px;
+	padding-bottom: 100px;
+	padding-right: 55px;
 }
 
 @keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	75% {
+		opacity: 1;
+	}
+	75% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@-moz-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	75% {
+		opacity: 1;
+	}
+	75% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	75% {
+		opacity: 1;
+	}
+	75% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@-o-keyframes fadeIn {
 	0% {
 		opacity: 0;
 	}
@@ -93,7 +154,7 @@ p {
 	transform: translateY(-50%);
 	background-color: rgba(255, 255, 255, 0.5);
 	content: '';
-	height: 6.4px;
+	height: 4px;
 	width: 100%;
 }
 
@@ -101,15 +162,19 @@ p {
 	margin-top: 0;
 }
 .nav-toggle .nav-toggle-bar::after {
-	margin-top: 12.8px;
+	margin-top: 15px;
 }
 .nav-toggle .nav-toggle-bar::before {
-	margin-top: -12.8px;
+	margin-top: -15px;
 }
+
 .nav-toggle.expanded .nav-toggle-bar::after,
 .nav-toggle.expanded .nav-toggle-bar::before {
 	background-color: rgba(255, 255, 255, 0.5);
 	margin-top: 0;
+}
+.nav-toggle.expanded .instructions {
+	visibility: hidden;
 }
 
 .nav-toggle.expanded .nav-toggle-bar::after {
@@ -233,7 +298,6 @@ button:focus {
 	}
 	h3 {
 		margin-top: 60px;
-		/* margin-bottom: 60px; */
 		align-self: center;
 		width: 100vw;
 		font-size: 30px;
