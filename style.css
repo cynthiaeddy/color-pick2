@@ -127,6 +127,7 @@ h1 {
 	padding-bottom: 25px;
 	margin-right: 40px;
 	border-bottom: 1px red double;
+	color: rgba(255, 255, 0, 0.7);
 }
 p {
 	font-size: 25px;
@@ -290,26 +291,29 @@ button:focus {
 		height: 12vh;
 	}
 }
+
 @media (max-width: 600px) {
 	.header {
 		padding-top: 30px;
-		margin-top: 75px;
+		margin-top: 5px;
 		height: 18vh;
 	}
 	h3 {
-		margin-top: 60px;
+		margin-top: 10px;
 		align-self: center;
-		width: 100vw;
-		font-size: 30px;
+		width: 30vw;
+		font-size: 35px;
 		text-align: center;
 		margin-left: 0;
 	}
+
 	.container {
 		width: 100vw;
 		margin-left: -5px;
 	}
 
 	.cards {
+		margin-top: 60px;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 	}
@@ -344,5 +348,9 @@ button:focus {
 	}
 	h1 {
 		margin-right: 20px;
+	}
+	.instructions {
+		font-size: 17px;
+		padding-bottom: 70px;
 	}
 }
