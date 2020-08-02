@@ -31,6 +31,7 @@ let cardColor;
 let card;
 let cardsColor;
 let carda;
+let cardet;
 let count = 0;
 let on = false;
 let foundCard;
@@ -85,11 +86,11 @@ function findCard(cardaId) {
 	console.log(foundCard);
 }
 
-function findColor(cardaColor) {
+function findColor(cardaColor, carda) {
 	// foundColor = order.find((ord) => {
 	// 	return cardaColor === ord;
 	// });
-	return (foundColor = cardaColor);
+	return (foundColor = cardaColor), (cardet = carda);
 	console.log(cardaColor);
 }
 
@@ -148,10 +149,21 @@ function gameTurn() {
 	// }
 	if (compTurn) {
 		clearColor();
-		console.log('cardId', cardId, 'order', order, 'carda', carda, 'foundCard', foundCard, 'foundColor', foundColor);
+		console.log(
+			'cardId',
+			cardId,
+			'order',
+			order,
+			'cardet',
+			cardet,
+			'foundCard',
+			foundCard,
+			'foundColor',
+			foundColor
+		);
 		// console.log(cardId, 'line 95');
 		setTimeout(() => {
-			if (order[flash] == foundCard) yellowPick();
+			if (order[flash] == foundCard) colorPicker();
 			if (order[flash] == 2) orangePick();
 			if (order[flash] == 3) redPick();
 			if (order[flash] == 4) purplePick();
@@ -161,6 +173,11 @@ function gameTurn() {
 		}, 200);
 	}
 	// });
+}
+function colorPicker() {
+	console.log('hit yellow');
+	cardet.style.border = `10px solid foundColor`;
+	cardet.style.background = 'none';
 }
 
 function yellowPick() {
@@ -241,7 +258,7 @@ cards.forEach((carda) => {
 			cardaId = +carda.dataset.id;
 			cardaColor = carda.dataset.color;
 			findCard(cardaId);
-			findColor(cardaColor);
+			findColor(cardaColor, carda);
 		}
 		if (start) {
 			playerOrder.push(cardaId);
