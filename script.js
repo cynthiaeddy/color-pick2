@@ -28,6 +28,7 @@ let start = false;
 let win;
 let cardId;
 let cardColor;
+let card;
 
 const turnCounter = document.querySelector('#turn');
 const yellow = document.querySelector('#yellow');
@@ -38,8 +39,6 @@ const blue = document.querySelector('#blue');
 const green = document.querySelector('#green');
 const startButton = document.querySelector('#start');
 const cards = document.querySelectorAll('.circle');
-
-console.log('line 41', cardId);
 
 startButton.addEventListener('click', (event) => {
 	if (startButton) {
@@ -91,6 +90,7 @@ function gameTurn() {
 		}, 200);
 	}
 }
+
 // 	if (compTurn) {
 // 		clearColor(cardId);
 // 		setTimeout(() => {
@@ -143,6 +143,10 @@ function clearColor() {
 	blue.style.backgroundColor = 'blue';
 	green.style.backgroundColor = 'green';
 }
+
+// function clearColor() {
+// 	card.style.backgroundColor = `cardColor`;
+// }
 
 function flashColor() {
 	yellow.style.border = '10px solid yellow';
@@ -245,9 +249,12 @@ green.addEventListener('click', (event) => {
 		}
 	}
 });
-function colorPick() {
-	cardColor.style.border = `10px solid ${cardColor}`;
-	cardColor.style.background = 'none';
+function colorPick(card) {
+	console.log(cardColor, typeof cardColor, cardId);
+
+	card.style.border = `10px solid cardColor`;
+	card.style.background = 'none';
+	console.log(card.style.border, card.style.background);
 }
 // function clearColor(cardId) {
 // 	cardId.style.background = `${cardId}`;
@@ -264,22 +271,22 @@ cards.forEach((card) => {
 		if (card.id === card.dataset.color) {
 			cardId = +card.dataset.id;
 			cardColor = card.dataset.color;
-			console.log(typeof cardId, cardId, 'cardColor', cardColor);
+			console.log(typeof cardId, cardId, 'cardColor', cardColor, 'card', card);
 		}
 
 		if (start) {
 			playerOrder.push(cardId);
-			console.timeLog(playerOrder);
-			// check();
-			// colorPick();
-			// if (!win) {
-			// 	setTimeout(() => {
-			// 		clearColor();
-			// 	}, 300);
-			// }
+			check();
+			colorPick(card);
+			if (!win) {
+				setTimeout(() => {
+					clearColor();
+				}, 300);
+			}
 		}
 	});
 });
+console.log('line 283', cardId, cardColor);
 
 // 	if (start) {
 // 		playerOrder.push(6);
