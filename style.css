@@ -34,6 +34,12 @@ h3,
 	-moz-animation: fadeIn ease 5s;
 	-o-animation: fadeIn ease 5s;
 }
+
+.lil-circle {
+	width: 20px;
+	height: 20px;
+	background: red;
+}
 .instructions {
 	height: 50px;
 	width: 60px;
