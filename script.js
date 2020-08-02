@@ -26,6 +26,8 @@ let compTurn;
 let intervalId;
 let start = false;
 let win;
+let cardId;
+let cardColor;
 
 const turnCounter = document.querySelector('#turn');
 const yellow = document.querySelector('#yellow');
@@ -35,7 +37,9 @@ const purple = document.querySelector('#purple');
 const blue = document.querySelector('#blue');
 const green = document.querySelector('#green');
 const startButton = document.querySelector('#start');
-const cards = document.querySelectorAll('.card');
+const cards = document.querySelectorAll('.circle');
+
+console.log('line 41', cardId);
 
 startButton.addEventListener('click', (event) => {
 	if (startButton) {
@@ -87,6 +91,19 @@ function gameTurn() {
 		}, 200);
 	}
 }
+// 	if (compTurn) {
+// 		clearColor(cardId);
+// 		setTimeout(() => {
+// 			if (order[flash] == 1) colorPick(`${cardId}`);
+// 			if (order[flash] == 2) colorPick(`${cardId}`);
+// 			if (order[flash] == 3) colorPick(`${cardId}`);
+// 			if (order[flash] == 4) colorPick(`${cardId}`);
+// 			if (order[flash] == 5) colorPick(`${cardId}`);
+// 			if (order[flash] == 6) colorPick(`${cardId}`);
+// 			flash++;
+// 		}, 200);
+// 	}
+// }
 
 function yellowPick() {
 	yellow.style.border = '10px solid yellow';
@@ -228,7 +245,53 @@ green.addEventListener('click', (event) => {
 		}
 	}
 });
+function colorPick() {
+	cardColor.style.border = `10px solid ${cardColor}`;
+	cardColor.style.background = 'none';
+}
+// function clearColor(cardId) {
+// 	cardId.style.background = `${cardId}`;
+// }
 
+// function flashColor() {
+// 	yellow.style.border = '10px solid yellow';
+// 	yellow.style.background = 'none';
+// }
+
+cards.forEach((card) => {
+	card.addEventListener('click', (e) => {
+		console.log('clicked', 'card.id', card.id, 'card.dataset', e.target.dataset.color, 'e.target', e.target);
+		if (card.id === card.dataset.color) {
+			cardId = +card.dataset.id;
+			cardColor = card.dataset.color;
+			console.log(typeof cardId, cardId, 'cardColor', cardColor);
+		}
+
+		if (start) {
+			playerOrder.push(cardId);
+			console.timeLog(playerOrder);
+			// check();
+			// colorPick();
+			// if (!win) {
+			// 	setTimeout(() => {
+			// 		clearColor();
+			// 	}, 300);
+			// }
+		}
+	});
+});
+
+// 	if (start) {
+// 		playerOrder.push(6);
+// 		check();
+// 		greenPick();
+// 		if (!win) {
+// 			setTimeout(() => {
+// 				clearColor();
+// 			}, 300);
+// 		}
+// 	}
+// });
 function check() {
 	if (playerOrder[playerOrder.length - 1] !== order[playerOrder.length - 1]) good = false;
 
