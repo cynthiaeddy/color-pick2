@@ -163,92 +163,6 @@ function flashColor() {
 	green.style.background = 'none';
 }
 
-yellow.addEventListener('click', (event) => {
-	console.log('yellow');
-	if (start) {
-		playerOrder.push(1);
-		check();
-		yellowPick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
-		}
-	}
-});
-
-orange.addEventListener('click', (event) => {
-	console.log('orange');
-	if (start) {
-		playerOrder.push(2);
-		check();
-		orangePick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
-		}
-	}
-});
-
-red.addEventListener('click', (event) => {
-	console.log('red');
-
-	if (start) {
-		playerOrder.push(3);
-		check();
-		redPick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
-		}
-	}
-});
-
-purple.addEventListener('click', (event) => {
-	console.log('purple');
-
-	if (start) {
-		playerOrder.push(4);
-		check();
-		purplePick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
-		}
-	}
-});
-
-blue.addEventListener('click', (event) => {
-	console.log('blue');
-
-	if (start) {
-		playerOrder.push(5);
-		check();
-		bluePick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
-		}
-	}
-});
-green.addEventListener('click', (event) => {
-	console.log('green');
-
-	if (start) {
-		playerOrder.push(6);
-		check();
-		greenPick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
-		}
-	}
-});
 function colorPick(card) {
 	console.log(cardColor, typeof cardColor, cardId);
 
@@ -273,7 +187,6 @@ cards.forEach((card) => {
 			cardColor = card.dataset.color;
 			console.log(typeof cardId, cardId, 'cardColor', cardColor, 'card', card);
 		}
-
 		if (start) {
 			playerOrder.push(cardId);
 			check();
@@ -288,17 +201,6 @@ cards.forEach((card) => {
 });
 console.log('line 283', cardId, cardColor);
 
-// 	if (start) {
-// 		playerOrder.push(6);
-// 		check();
-// 		greenPick();
-// 		if (!win) {
-// 			setTimeout(() => {
-// 				clearColor();
-// 			}, 300);
-// 		}
-// 	}
-// });
 function check() {
 	if (playerOrder[playerOrder.length - 1] !== order[playerOrder.length - 1]) good = false;
 
