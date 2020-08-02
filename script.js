@@ -35,6 +35,7 @@ const purple = document.querySelector('#purple');
 const blue = document.querySelector('#blue');
 const green = document.querySelector('#green');
 const startButton = document.querySelector('#start');
+const cards = document.querySelectorAll('.card');
 
 startButton.addEventListener('click', (event) => {
 	if (startButton) {
@@ -55,7 +56,7 @@ function play() {
 	turn = 1;
 	turnCounter.innerHTML = 1;
 	good = true;
-	for (var i = 0; i < 20; i++) {
+	for (var i = 0; i < 10; i++) {
 		order.push(Math.floor(Math.random() * 6) + 1);
 	}
 	compTurn = true;

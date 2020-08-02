@@ -27,7 +27,8 @@ h3 {
 }
 h3,
 .instructions {
-	opacity: 0.0;
+	opacity: 100;
+	/* opacity: 0.0; */
 	animation: fadeIn ease 5s;
 	-webkit-animation: fadeIn ease 5s;
 	-moz-animation: fadeIn ease 5s;
@@ -218,8 +219,9 @@ button:focus {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-left: 50px;
 	flex-direction: column;
+	position: fixed;
+	top: 65vh;
 }
 
 #turn {
@@ -234,21 +236,13 @@ button:focus {
 	flex-direction: row;
 	flex-wrap: wrap;
 }
-.card {
-	width: 150px;
-	height: 150px;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	padding-top: 20px;
-	margin: 20px;
-	list-style: none;
-}
+
 .circle {
 	width: 100px;
 	height: 100px;
 	border-radius: 50px;
 	cursor: pointer;
+	margin: 20px;
 }
 #yellow {
 	background: yellow;
@@ -275,20 +269,48 @@ button:focus {
 	border: 10px solid green;
 }
 
+/* ////// media-sizes ///////// */
+
 @media (max-width: 1050px) {
 	.cards {
-		width: 70vw;
+		width: 90vw;
 		padding-left: 0;
+		position: fixed;
+		top: 40vh;
 	}
-
+	#turn {
+		margin-top: 20px;
+	}
+	h3 {
+		margin-top: 20vh;
+	}
 	#switches {
-		margin-left: 0;
+		top: 55vh;
+	}
+	.nav-toggle {
+		right: 50px;
 	}
 }
+
 @media (max-width: 800px) {
 	.header {
-		/* margin-top: 0; */
 		height: 12vh;
+	}
+	.cards {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		padding-left: 0;
+		position: fixed;
+		top: 35vh;
+		width: 50vw;
+		/* margin-left: 20px; */
+	}
+	h3 {
+		margin-top: 30vh;
+		margin-left: 0;
+	}
+	#switches {
+		top: 65vh;
 	}
 }
 
@@ -309,26 +331,24 @@ button:focus {
 
 	.container {
 		width: 100vw;
-		margin-left: -5px;
+		margin-left: -15px;
 	}
 
 	.cards {
-		margin-top: 60px;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
+		top: 27vh;
 	}
-	.card {
-		margin: 0;
-		width: 125px;
-		height: 125px;
+	.circle {
+		margin: 10px;
 	}
 
 	#switches {
 		margin-left: 0;
+		top: 80vh;
 	}
 	#turn {
-		position: absolute;
-		margin-top: 60px;
+		margin-top: 10px;
 	}
 	.nav {
 		height: 100vh;
@@ -340,8 +360,11 @@ button:focus {
 	}
 	.nav-toggle {
 		position: absolute;
+		right: 35px;
 	}
-
+	.button {
+		font-size: 2.25em;
+	}
 	p {
 		font-size: 25px;
 		padding-bottom: 25px;
