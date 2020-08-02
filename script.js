@@ -30,12 +30,9 @@ let cardId;
 let cardColor;
 let card;
 let cardsColor;
-let carda;
 let cardet;
 let count = 0;
 let on = false;
-let foundCard;
-let foundColor;
 
 const turnCounter = document.querySelector('#turn');
 const startButton = document.querySelector('#start');
@@ -70,100 +67,29 @@ function play() {
 	turn = 1;
 	turnCounter.innerHTML = 1;
 	good = true;
-	for (var i = 0; i < 3; i++) {
+	for (var i = 0; i < 10; i++) {
 		order.push(Math.floor(Math.random() * 6) + 1);
 	}
 	compTurn = true;
 
 	intervalId = setInterval(gameTurn, 800);
-	console.log('intervalId line 62', intervalId);
-}
-
-function findCard(cardaId) {
-	foundCard = order.find((ord) => {
-		return cardaId === ord;
-	});
-	console.log(foundCard);
-}
-
-function findColor(cardaColor, carda) {
-	// foundColor = order.find((ord) => {
-	// 	return cardaColor === ord;
-	// });
-	return (foundColor = cardaColor), (cardet = carda);
-	console.log(cardaColor);
 }
 
 function gameTurn() {
-	// for (let i = 0; i < cards.length; i++) {
-	// 	// cardsColor = i
-	// 	for (let j = 0; j < order.length; j++) {
-	// 		if (i++ === j) {
-	// 			cardsColor = i;
-	// 			cardoColor = cards[i];
-	// 			console.log(cardsColor, cardoColor);
-	// 		}
-	// 	}
-	// }
-
-	// function buyJewel(jewelId, btn) {
-	//   console.log(`div[data-id="${jewelId}"]`)
-	//   const foundJewel = jewels.find(function(jewel) {
-	//     return jewel.id === jewelId
-	// console.log(carda);
-	// count++;
-	// console.log('count', count, 'order', order);
-	// cards.forEach((card) => {
-	// 	// console.log('card', card, 'card.id', card.id, 'card.dataset.id', card.dataset.id);
-	// 	cardId = +card.dataset.id;
-	// 	cardColor = card.dataset.color;
-	// 	// console.log(cardId);
-	// 	order.forEach(ord => {
-
-	// 	})
-	// });
-	// console.log(cardsColor);
 	start = false;
 
 	if (flash == turn) {
 		clearInterval(intervalId);
 		compTurn = false;
 		clearColor();
-		console.log(cardId, 'line 75 intervalId', intervalId);
 		start = true;
 	}
 
-	// 	if (compTurn) {
-	// 		clearColor(cardId);
-	// 		setTimeout(() => {
-	// 			console.log('cardId line 82', cardId);
-	// 			if (order[flash] == cardId) yellowPick();
-	// 			if (order[flash] == cardId) orangePick();
-	// 			if (order[flash] == cardId) redPick();
-	// 			if (order[flash] == cardId) purplePick();
-	// 			if (order[flash] == cardId) bluePick();
-	// 			if (order[flash] == cardId) greenPick();
-	// 			flash++;
-	// 		}, 200);
-	// 	}
-	// }
 	if (compTurn) {
 		clearColor();
-		console.log(
-			'cardId',
-			cardId,
-			'order',
-			order,
-			'cardet',
-			cardet,
-			'foundCard',
-			foundCard,
-			'foundColor',
-			foundColor
-		);
 		// console.log(cardId, 'line 95');
 		setTimeout(() => {
-			if (order[flash] == foundCard) colorPicker();
+			if (order[flash] == 1) yellowPick();
 			if (order[flash] == 2) orangePick();
 			if (order[flash] == 3) redPick();
 			if (order[flash] == 4) purplePick();
@@ -172,34 +98,24 @@ function gameTurn() {
 			flash++;
 		}, 200);
 	}
-	// });
-}
-function colorPicker() {
-	console.log('hit yellow');
-	cardet.style.border = `10px solid foundColor`;
-	cardet.style.background = 'none';
 }
 
 function yellowPick() {
-	// console.log('yellow', yellow, card);
 	yellow.style.border = '10px solid yellow';
 	yellow.style.background = 'none';
 }
 
 function orangePick() {
-	// console.log('orange', orange, card);
 	orange.style.border = '10px solid orange';
 	orange.style.background = 'none';
 }
 
 function redPick() {
-	// console.log('red', red, card);
 	red.style.border = '10px solid red';
 	red.style.background = 'none';
 }
 
 function purplePick() {
-	// console.log('purple', purple, card);
 	purple.style.border = '10px solid purple';
 	purple.style.background = 'none';
 }
@@ -238,32 +154,21 @@ function flashColor() {
 	green.style.background = 'none';
 }
 
-// function clearColor(cardId) {
-// 	cardId.style.background = `${cardId}`;
-// }
-
-// function flashColor() {
-// 	yellow.style.border = '10px solid yellow';
-// 	yellow.style.background = 'none';
-// }
-
-function colorPick(carda) {
-	carda.style.border = `10px solid cardaColor`;
-	carda.style.background = 'none';
+function colorPick(card) {
+	card.style.border = `10px solid cardColor`;
+	card.style.background = 'none';
 }
 
-cards.forEach((carda) => {
-	carda.addEventListener('click', (e) => {
-		if (carda.id === carda.dataset.color) {
-			cardaId = +carda.dataset.id;
-			cardaColor = carda.dataset.color;
-			findCard(cardaId);
-			findColor(cardaColor, carda);
+cards.forEach((card) => {
+	card.addEventListener('click', (e) => {
+		if (card.id === card.dataset.color) {
+			cardId = +card.dataset.id;
+			cardColor = card.dataset.color;
 		}
 		if (start) {
-			playerOrder.push(cardaId);
+			playerOrder.push(cardId);
 			check();
-			colorPick(carda);
+			colorPick(card);
 			if (!win) {
 				setTimeout(() => {
 					clearColor();
@@ -276,7 +181,7 @@ cards.forEach((carda) => {
 function check() {
 	if (playerOrder[playerOrder.length - 1] !== order[playerOrder.length - 1]) good = false;
 
-	if (playerOrder.length == 3 && good) {
+	if (playerOrder.length == 10 && good) {
 		winGame();
 	}
 
@@ -293,7 +198,6 @@ function check() {
 			good = true;
 			intervalId = setInterval(gameTurn, 800);
 		}, 800);
-		console.log('intervalId line 220 compTurn', intervalId);
 	}
 
 	if (turn == playerOrder.length && good && !win) {
@@ -304,7 +208,6 @@ function check() {
 		turnCounter.innerHTML = turn;
 		intervalId = setInterval(gameTurn, 800);
 	}
-	console.log('intervalId line 232 playerTurn', intervalId);
 }
 
 function winGame() {
