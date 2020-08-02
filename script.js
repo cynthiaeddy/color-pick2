@@ -17,8 +17,8 @@
 	});
 })();
 
-let order = [];
-let playerOrder = [];
+let order;
+let playerOrder;
 let flash;
 let turn;
 let good;
@@ -26,26 +26,37 @@ let compTurn;
 let intervalId;
 let start = false;
 let win;
+let cardId;
+let cardColor;
+let card;
+let cardsColor;
+let cardet;
+let count = 0;
+let on = false;
 
 const turnCounter = document.querySelector('#turn');
-const yellow = document.querySelector('#yellow');
-const orange = document.querySelector('#orange');
-const red = document.querySelector('#red');
-const purple = document.querySelector('#purple');
-const blue = document.querySelector('#blue');
-const green = document.querySelector('#green');
 const startButton = document.querySelector('#start');
-const cards = document.querySelectorAll('.card');
+const cards = document.querySelectorAll('.circle');
 
 startButton.addEventListener('click', (event) => {
+	onButton();
 	if (startButton) {
 		start = true;
-		turnCounter.innerHTML = '-';
 	}
-	if (start || win) {
+	if (on || win) {
 		play();
 	}
 });
+
+function onButton() {
+	if (startButton) {
+		on = true;
+	} else {
+		on = false;
+		clearColor();
+		clearInterval(intervalId);
+	}
+}
 
 function play() {
 	win = false;
@@ -76,6 +87,7 @@ function gameTurn() {
 
 	if (compTurn) {
 		clearColor();
+		// console.log(cardId, 'line 95');
 		setTimeout(() => {
 			if (order[flash] == 1) yellowPick();
 			if (order[flash] == 2) orangePick();
@@ -142,91 +154,28 @@ function flashColor() {
 	green.style.background = 'none';
 }
 
-yellow.addEventListener('click', (event) => {
-	console.log('yellow');
-	if (start) {
-		playerOrder.push(1);
-		check();
-		yellowPick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
+function colorPick(card) {
+	card.style.border = `10px solid cardColor`;
+	card.style.background = 'none';
+}
+
+cards.forEach((card) => {
+	card.addEventListener('click', (e) => {
+		if (card.id === card.dataset.color) {
+			cardId = +card.dataset.id;
+			cardColor = card.dataset.color;
 		}
-	}
-});
-
-orange.addEventListener('click', (event) => {
-	console.log('orange');
-	if (start) {
-		playerOrder.push(2);
-		check();
-		orangePick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
+		if (start) {
+			playerOrder.push(cardId);
+			check();
+			colorPick(card);
+			if (!win) {
+				setTimeout(() => {
+					clearColor();
+				}, 300);
+			}
 		}
-	}
-});
-
-red.addEventListener('click', (event) => {
-	console.log('red');
-
-	if (start) {
-		playerOrder.push(3);
-		check();
-		redPick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
-		}
-	}
-});
-
-purple.addEventListener('click', (event) => {
-	console.log('purple');
-
-	if (start) {
-		playerOrder.push(4);
-		check();
-		purplePick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
-		}
-	}
-});
-
-blue.addEventListener('click', (event) => {
-	console.log('blue');
-
-	if (start) {
-		playerOrder.push(5);
-		check();
-		bluePick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
-		}
-	}
-});
-green.addEventListener('click', (event) => {
-	console.log('green');
-
-	if (start) {
-		playerOrder.push(6);
-		check();
-		greenPick();
-		if (!win) {
-			setTimeout(() => {
-				clearColor();
-			}, 300);
-		}
-	}
+	});
 });
 
 function check() {
