@@ -1,3 +1,24 @@
+let order;
+let playerOrder;
+let flash;
+let turn;
+let good;
+let compTurn;
+let intervalId;
+let win;
+let cardId;
+let card;
+let foundCard;
+let foundColor;
+let count = 0;
+let on = false;
+
+const turnCounter = document.querySelector('#turn');
+const startButton = document.querySelector('#start');
+const cards = document.querySelectorAll('.circle');
+
+/////////////// navbar toggle //////////////////////////
+
 (function() {
 	const hamburger = {
 		navToggle: document.querySelector('.nav-toggle'),
@@ -17,37 +38,9 @@
 	});
 })();
 
-let order;
-let playerOrder;
-let flash;
-let turn;
-let good;
-let compTurn;
-let intervalId;
-let start = false;
-let win;
-let cardId;
-let card;
-let foundCard;
-let foundColor;
-let count = 0;
-let on = false;
-
-const turnCounter = document.querySelector('#turn');
-const startButton = document.querySelector('#start');
-const cards = document.querySelectorAll('.circle');
+/////////////////////// game //////////////////////////////////
 
 startButton.addEventListener('click', (event) => {
-	onButton();
-	if (startButton) {
-		start = true;
-	}
-	if (on || win) {
-		play();
-	}
-});
-
-function onButton() {
 	if (startButton) {
 		on = true;
 	} else {
@@ -55,7 +48,10 @@ function onButton() {
 		clearColor();
 		clearInterval(intervalId);
 	}
-}
+	if (on || win) {
+		play();
+	}
+});
 
 function play() {
 	win = false;
@@ -75,13 +71,13 @@ function play() {
 }
 
 function gameTurn() {
-	start = false;
+	on = false;
 
 	if (flash == turn) {
 		clearInterval(intervalId);
 		compTurn = false;
 		clearColor();
-		start = true;
+		on = true;
 	}
 
 	if (compTurn) {
@@ -95,31 +91,22 @@ function gameTurn() {
 }
 
 function clearColor() {
-	yellow.style.backgroundColor = 'yellow';
-	orange.style.backgroundColor = 'orange';
-	red.style.backgroundColor = 'red';
-	purple.style.backgroundColor = 'purple';
-	blue.style.backgroundColor = 'blue';
-	green.style.backgroundColor = 'green';
+	for (i = 0; i < cards.length; i++) {
+		let color = cards[i].id;
+		cards[i].style.backgroundColor = color;
+	}
 }
 
 function flashColor() {
-	yellow.style.border = '10px solid yellow';
-	yellow.style.background = 'none';
-	orange.style.border = '10pxsolid orange';
-	orange.style.background = 'none';
-	red.style.border = '10px solid red';
-	red.style.background = 'none';
-	purple.style.border = '10px solid purple';
-	purple.style.background = 'none';
-	blue.style.border = '10px solid blue';
-	blue.style.background = 'none';
-	green.style.border = '10px solid green';
-	green.style.background = 'none';
+	for (i = 0; i < cards.length; i++) {
+		let color = cards[i].id;
+		cards[i].style.border = `10px solid ${color}`;
+		cards[i].background = 'none';
+	}
 }
 
 function colorPick(card) {
-	console.log('hit', 'card', card, 'card.id', card.id);
+	// console.log('hit', 'card', card, 'card.id', card.id);
 	card.style.border = `10px solid ${card.id}`;
 	card.style.background = 'none';
 }
@@ -128,7 +115,7 @@ cards.forEach((card) => {
 	card.addEventListener('click', (e) => {
 		cardId = +card.dataset.id;
 
-		if (start) {
+		if (on) {
 			playerOrder.push(cardId);
 			check();
 			colorPick(card);
@@ -143,7 +130,6 @@ cards.forEach((card) => {
 
 function check() {
 	if (playerOrder[playerOrder.length - 1] !== order[playerOrder.length - 1]) good = false;
-
 	if (playerOrder.length == 10 && good) {
 		winGame();
 	}
@@ -176,6 +162,6 @@ function check() {
 function winGame() {
 	flashColor();
 	turnCounter.innerHTML = 'you win!';
-	start = false;
+	on = false;
 	win = true;
 }
