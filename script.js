@@ -8,9 +8,6 @@ let intervalId;
 let win;
 let cardId;
 let card;
-let foundCard;
-let foundColor;
-let count = 0;
 let on = false;
 
 const turnCounter = document.querySelector('#turn');
@@ -106,7 +103,6 @@ function flashColor() {
 }
 
 function colorPick(card) {
-	// console.log('hit', 'card', card, 'card.id', card.id);
 	card.style.border = `10px solid ${card.id}`;
 	card.style.background = 'none';
 }
