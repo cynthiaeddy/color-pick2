@@ -24,7 +24,6 @@ let turn;
 let good;
 let compTurn;
 let intervalId;
-let start = false;
 let win;
 let cardId;
 let card;
@@ -38,16 +37,6 @@ const startButton = document.querySelector('#start');
 const cards = document.querySelectorAll('.circle');
 
 startButton.addEventListener('click', (event) => {
-	onButton();
-	if (startButton) {
-		start = true;
-	}
-	if (on || win) {
-		play();
-	}
-});
-
-function onButton() {
 	if (startButton) {
 		on = true;
 	} else {
@@ -55,7 +44,10 @@ function onButton() {
 		clearColor();
 		clearInterval(intervalId);
 	}
-}
+	if (on || win) {
+		play();
+	}
+});
 
 function play() {
 	win = false;
@@ -75,13 +67,13 @@ function play() {
 }
 
 function gameTurn() {
-	start = false;
+	on = false;
 
 	if (flash == turn) {
 		clearInterval(intervalId);
 		compTurn = false;
 		clearColor();
-		start = true;
+		on = true;
 	}
 
 	if (compTurn) {
@@ -128,7 +120,7 @@ cards.forEach((card) => {
 	card.addEventListener('click', (e) => {
 		cardId = +card.dataset.id;
 
-		if (start) {
+		if (on) {
 			playerOrder.push(cardId);
 			check();
 			colorPick(card);
@@ -176,6 +168,6 @@ function check() {
 function winGame() {
 	flashColor();
 	turnCounter.innerHTML = 'you win!';
-	start = false;
+	on = false;
 	win = true;
 }
