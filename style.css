@@ -4,6 +4,8 @@
 body {
 	background: #000;
 	font-family: 'Courier Prime', monospace;
+	overflow: hidden !important;
+	position: fixed;
 }
 
 /* ////////// fade-in text ////////// */

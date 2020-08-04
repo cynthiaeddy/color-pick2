@@ -29,8 +29,8 @@ let win;
 let cardId;
 let cardColor;
 let card;
-let cardsColor;
-let cardet;
+let foundCard;
+let foundColor;
 let count = 0;
 let on = false;
 
@@ -67,8 +67,8 @@ function play() {
 	turn = 1;
 	turnCounter.innerHTML = 1;
 	good = true;
-	for (var i = 0; i < 10; i++) {
-		order.push(Math.floor(Math.random() * 6) + 1);
+	for (var i = 0; i < 4; i++) {
+		order.push(Math.floor(Math.random() * 3) + 1);
 	}
 	compTurn = true;
 
@@ -87,23 +87,76 @@ function gameTurn() {
 
 	if (compTurn) {
 		clearColor();
+		console.log(
+			// 'cardId',
+			// cardId,
+			'order',
+			order,
+			'card',
+			card
+
+			// typeof foundColor,
+			// 'card',
+			// card
+		);
 		// console.log(cardId, 'line 95');
+		// setTimeout(() => {
+		// 	if (order[flash] == 1) yellowPick();
+		// 	if (order[flash] == 2) orangePick();
+		// 	if (order[flash] == 3) redPick();
+		// 	if (order[flash] == 4) purplePick();
+		// 	if (order[flash] == 5) bluePick();
+		// 	if (order[flash] == 6) greenPick();
+		// 	flash++;
+		// }, 200);
 		setTimeout(() => {
-			if (order[flash] == 1) yellowPick();
-			if (order[flash] == 2) orangePick();
-			if (order[flash] == 3) redPick();
-			if (order[flash] == 4) purplePick();
-			if (order[flash] == 5) bluePick();
-			if (order[flash] == 6) greenPick();
+			// if (order[flash] === 1 && cardColor === yellow) {
+			// 	colorPick();
+			// }
+
+			// if (order[flash] === 2 && cardColor === orange) {
+			// 	colorPick();
+			// }
+			// if (order[flash] === 3 && cardColor === red) {
+			// 	colorPick();
+			// }
+
+			// // if (order[flash] == 3) redPick();
+			// if (order[flash] == 4) purplePick();
+			// if (order[flash] == 5) bluePick();
+			// if (order[flash] == 6) greenPick();
+			colorPick(cards[order[flash] - 1]);
 			flash++;
 		}, 200);
 	}
 }
-
-function yellowPick() {
-	yellow.style.border = '10px solid yellow';
-	yellow.style.background = 'none';
+// function findCard(cardId) {
+// 	foundCard = order.find((ord) => {
+// 		return cardId === ord;
+// 	});
+// 	console.log(foundCard);
+// }
+function findCard(card) {
+	return card;
+	// console.log(foundCard);
 }
+function findColor(cardColor) {
+	// foundColor = order.find((ord) => {
+	// 	return cardaColor === ord;
+	// });
+	return cardColor;
+	console.log(foundColor);
+}
+// function colorPicker() {
+// 	console.log('hit');
+// 	color.style.border = `10px solid color`;
+// 	color.style.background = 'none';
+// }
+
+// function yellowPick() {
+// 	yellow.style.border = '10px solid yellow';
+// 	yellow.style.background = 'none';
+// }
 
 function orangePick() {
 	orange.style.border = '10px solid orange';
@@ -155,16 +208,22 @@ function flashColor() {
 }
 
 function colorPick(card) {
-	card.style.border = `10px solid cardColor`;
+	// let card = { red: red, yellow: yellow, orange: orange, purple: purple, green: green, blue: blue }[cardColor];
+
+	console.log('hit', 'card', card, 'card.id', card.id);
+	card.style.border = `10px solid ${card.id}`;
 	card.style.background = 'none';
 }
 
 cards.forEach((card) => {
 	card.addEventListener('click', (e) => {
-		if (card.id === card.dataset.color) {
-			cardId = +card.dataset.id;
-			cardColor = card.dataset.color;
-		}
+		// if (card.id === card.dataset.color) {
+		cardId = +card.dataset.id;
+		cardColor = card.dataset.color;
+		findCard(card);
+
+		findColor(cardColor);
+		// }
 		if (start) {
 			playerOrder.push(cardId);
 			check();
@@ -181,7 +240,7 @@ cards.forEach((card) => {
 function check() {
 	if (playerOrder[playerOrder.length - 1] !== order[playerOrder.length - 1]) good = false;
 
-	if (playerOrder.length == 10 && good) {
+	if (playerOrder.length == 4 && good) {
 		winGame();
 	}
 
