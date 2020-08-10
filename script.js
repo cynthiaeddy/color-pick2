@@ -79,6 +79,9 @@ function gameTurn() {
 
 	if (compTurn) {
 		clearColor();
+		cards.forEach((card) => {
+			card.removeEventListener('click', (e) => {});
+		});
 
 		setTimeout(() => {
 			colorPick(cards[order[flash] - 1]);
@@ -90,7 +93,7 @@ function gameTurn() {
 function clearColor() {
 	for (i = 0; i < cards.length; i++) {
 		let color = cards[i].id;
-		cards[i].style.backgroundColor = color;
+		cards[i].style.background = color;
 	}
 }
 
@@ -98,7 +101,7 @@ function flashColor() {
 	for (i = 0; i < cards.length; i++) {
 		let color = cards[i].id;
 		cards[i].style.border = `10px solid ${color}`;
-		cards[i].background = 'none';
+		cards[i].style.background = 'none';
 	}
 }
 
