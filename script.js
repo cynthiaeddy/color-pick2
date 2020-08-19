@@ -79,9 +79,9 @@ function gameTurn() {
 
 	if (compTurn) {
 		clearColor();
-		cards.forEach((card) => {
-			card.removeEventListener('click', (e) => {});
-		});
+		// cards.forEach((card) => {
+		// 	card.removeEventListener('click', (e) => {});
+		// });
 
 		setTimeout(() => {
 			colorPick(cards[order[flash] - 1]);
@@ -112,9 +112,8 @@ function colorPick(card) {
 
 cards.forEach((card) => {
 	card.addEventListener('click', (e) => {
-		cardId = +card.dataset.id;
-
 		if (on) {
+			cardId = +card.dataset.id;
 			playerOrder.push(cardId);
 			check();
 			colorPick(card);
